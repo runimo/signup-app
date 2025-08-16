@@ -2,13 +2,21 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "build": "yarn typecheck && nuxt build",
     "dev": "nuxt dev",
     "format": "prettier --write .",
     "generate": "nuxt generate",
     "lint": "eslint .",
+    "lint-staged": "lint-staged",
     "postinstall": "nuxt prepare",
+    "prepare": "husky install",
     "preview": "nuxt preview",
     "test": "vitest",
     "test:watch": "vitest --watch",
@@ -30,8 +38,10 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.3.0",
+    "husky": "^9.1.7",
     "jiti": "^2.5.1",
     "jsdom": "^26.1.0",
+    "lint-staged": "^16.1.5",
     "prettier": "^3.6.2",
     "typescript-eslint": "^8.39.1",
     "vitest": "^3.2.4"
