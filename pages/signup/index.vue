@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import SignUpForm from '../components/SignUpForm.vue'
+import SignUpForm from '../../components/SignUpForm.vue'
 import { definePageMeta } from '#imports'
 
 definePageMeta({
