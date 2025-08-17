@@ -19,11 +19,19 @@
             name="password"
             label="Password"
             required
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
           >
             <div v-if="errors.password.length > 0" slot="error">
               <p v-for="(error, index) in errors.password" :key="index">{{ error }}</p>
             </div>
+            <nord-button slot="end" square type="button" @click="togglePasswordVisibility">
+              <nord-icon
+                :name="showPassword ? 'interface-edit-on' : 'interface-edit-off'"
+              ></nord-icon>
+              <nord-visually-hidden>
+                {{ showPassword ? 'Hide password' : 'Show password' }}
+              </nord-visually-hidden>
+            </nord-button>
           </nord-input>
         </nord-stack>
       </nord-fieldset>
@@ -38,6 +46,8 @@ import NordButton from '@nordhealth/components/lib/Button'
 import NordFieldset from '@nordhealth/components/lib/Fieldset'
 import NordInput from '@nordhealth/components/lib/Input'
 import NordStack from '@nordhealth/components/lib/Stack'
+import NordIcon from '@nordhealth/components/lib/Icon'
+import NordVisuallyHidden from '@nordhealth/components/lib/VisuallyHidden'
 import { ref } from 'vue'
 import usePasswordValidation from '../composables/usePasswordValidation'
 import useEmailValidation from '../composables/useEmailAddressValidation'
@@ -85,6 +95,13 @@ const validateEmailAddress = useEmailValidation
 const handleValidation = (): void => {
   errors.value.password = validatePassword(formData.value.password)
   errors.value.email = validateEmailAddress(formData.value.email)
+}
+
+// Password visibility toggle
+const showPassword = ref(false)
+
+const togglePasswordVisibility = (): void => {
+  showPassword.value = !showPassword.value
 }
 </script>
 
