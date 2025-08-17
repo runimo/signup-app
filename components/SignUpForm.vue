@@ -3,8 +3,28 @@
     <nord-stack>
       <nord-fieldset hide-label label="Sign Up">
         <nord-stack>
-          <nord-input expand name="email" label="Email Address" required type="email"></nord-input>
-          <nord-input expand name="password" label="Password" required type="password"></nord-input>
+          <nord-input
+            v-model="formData.email"
+            expand
+            :error="errors.email[0]"
+            name="email"
+            label="Email Address"
+            required
+            type="email"
+          ></nord-input>
+          <nord-input
+            v-model="formData.password"
+            auto-complete="new-password"
+            expand
+            name="password"
+            label="Password"
+            required
+            type="password"
+          >
+            <div v-if="errors.password.length > 0" slot="error">
+              <p v-for="(error, index) in errors.password" :key="index">{{ error }}</p>
+            </div>
+          </nord-input>
         </nord-stack>
       </nord-fieldset>
       <nord-button expand type="submit" variant="primary">Sign Up</nord-button>
@@ -13,12 +33,14 @@
 </template>
 
 <script setup lang="ts">
+import { navigateTo } from '#app'
 import NordButton from '@nordhealth/components/lib/Button'
 import NordFieldset from '@nordhealth/components/lib/Fieldset'
 import NordInput from '@nordhealth/components/lib/Input'
 import NordStack from '@nordhealth/components/lib/Stack'
-import { navigateTo } from '#app'
 import { ref } from 'vue'
+import usePasswordValidation from '../composables/usePasswordValidation'
+import useEmailValidation from '../composables/useEmailAddressValidation'
 
 interface FormData {
   email: string
@@ -38,7 +60,31 @@ const updateFormData = (event: Event): void => {
 }
 
 const submit = async (): Promise<void> => {
-  await navigateTo('/signup/success')
+  handleValidation()
+  const hasErrors = errors.value.email.length > 0 || errors.value.password.length > 0
+
+  if (!hasErrors) {
+    await navigateTo('/signup/success')
+  }
+}
+
+// Validation
+interface FormErrors {
+  email: string[]
+  password: string[]
+}
+
+const errors = ref<FormErrors>({
+  email: [],
+  password: [],
+})
+
+const validatePassword = usePasswordValidation
+const validateEmailAddress = useEmailValidation
+
+const handleValidation = (): void => {
+  errors.value.password = validatePassword(formData.value.password)
+  errors.value.email = validateEmailAddress(formData.value.email)
 }
 </script>
 

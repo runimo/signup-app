@@ -12,6 +12,7 @@ export default withNuxt(
     },
     rules: {
       'prettier/prettier': 'error',
+      'vue/no-deprecated-slot-attribute': 'off',
     },
   },
   prettierConfig,
