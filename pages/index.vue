@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <h1>Welcome to the homepage</h1>
-    <AppAlert> This is an auto-imported component </AppAlert>
-  </div>
+  <SignUpForm />
 </template>
+
+<script setup lang="ts">
+import SignUpForm from '../components/SignUpForm.vue'
+import { definePageMeta } from '#imports'
+
+definePageMeta({
+  layout: 'signup',
+  title: 'Sign Up',
+})
+</script>

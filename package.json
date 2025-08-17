@@ -24,6 +24,9 @@
     "typecheck": "nuxi typecheck"
   },
   "dependencies": {
+    "@nordhealth/components": "^4.6.0",
+    "@nordhealth/css": "^4.1.0",
+    "@nordhealth/themes": "^9.0.0",
     "nuxt": "^3.18.1",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
