@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form method="post" @input="updateFormData" @submit.prevent="submit">
     <nord-stack>
       <nord-fieldset hide-label label="Sign Up">
         <nord-stack>
@@ -17,6 +17,29 @@ import NordButton from '@nordhealth/components/lib/Button'
 import NordFieldset from '@nordhealth/components/lib/Fieldset'
 import NordInput from '@nordhealth/components/lib/Input'
 import NordStack from '@nordhealth/components/lib/Stack'
+import { navigateTo } from '#app'
+import { ref } from 'vue'
+
+interface FormData {
+  email: string
+  password: string
+}
+
+const formData = ref<FormData>({
+  email: '',
+  password: '',
+})
+
+const updateFormData = (event: Event): void => {
+  const target = event.target as HTMLInputElement
+  const name = target.name as keyof FormData
+
+  formData.value[name] = target.value
+}
+
+const submit = async (): Promise<void> => {
+  await navigateTo('/signup/success')
+}
 </script>
 
 <style scoped>
