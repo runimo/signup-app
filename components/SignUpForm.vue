@@ -9,6 +9,7 @@
             :error="errors.email[0]"
             name="email"
             label="Email Address"
+            placeholder="user@example.com"
             required
             type="email"
           ></nord-input>
@@ -18,6 +19,7 @@
             expand
             name="password"
             label="Password"
+            placeholder="••••••••"
             required
             :type="showPassword ? 'text' : 'password'"
           >
