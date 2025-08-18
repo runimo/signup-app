@@ -1,5 +1,5 @@
 <template>
-  <form method="post" @input="updateFormData" @submit.prevent="submit">
+  <form method="post" @submit.prevent="submit">
     <nord-stack>
       <nord-fieldset hide-label label="Sign Up">
         <nord-stack>
@@ -36,6 +36,13 @@
             </nord-button>
           </nord-input>
         </nord-stack>
+        <nord-checkbox
+          :checked="formData.newsletter"
+          class="newsletter"
+          label="I’d like to receive occasional product updates and announcements"
+          name="newsletter"
+          @change="updateNewsletterSubscription"
+        ></nord-checkbox>
       </nord-fieldset>
       <nord-button expand type="submit" variant="primary">Sign Up</nord-button>
     </nord-stack>
@@ -45,10 +52,11 @@
 <script setup lang="ts">
 import { navigateTo } from '#app'
 import NordButton from '@nordhealth/components/lib/Button'
+import NordCheckbox from '@nordhealth/components/lib/Checkbox'
 import NordFieldset from '@nordhealth/components/lib/Fieldset'
+import NordIcon from '@nordhealth/components/lib/Icon'
 import NordInput from '@nordhealth/components/lib/Input'
 import NordStack from '@nordhealth/components/lib/Stack'
-import NordIcon from '@nordhealth/components/lib/Icon'
 import NordVisuallyHidden from '@nordhealth/components/lib/VisuallyHidden'
 import { ref } from 'vue'
 import usePasswordValidation from '../composables/usePasswordValidation'
@@ -57,18 +65,20 @@ import useEmailValidation from '../composables/useEmailAddressValidation'
 interface FormData {
   email: string
   password: string
+  newsletter: boolean
 }
 
 const formData = ref<FormData>({
   email: '',
   password: '',
+  newsletter: false,
 })
 
-const updateFormData = (event: Event): void => {
+const updateNewsletterSubscription = (event: Event): void => {
   const target = event.target as HTMLInputElement
-  const name = target.name as keyof FormData
+  const value = target.checked
 
-  formData.value[name] = target.value
+  formData.value.newsletter = value as boolean
 }
 
 const submit = async (): Promise<void> => {
@@ -108,15 +118,7 @@ const togglePasswordVisibility = (): void => {
 </script>
 
 <style scoped>
-.main-heading {
-  text-align: center;
-  font-weight: 300;
-  font-size: 1.4rem;
-}
-
-.product-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
+.newsletter {
+  margin-top: 2rem;
 }
 </style>
