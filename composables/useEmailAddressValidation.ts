@@ -20,7 +20,7 @@ const useEmailAddressValidation = (emailAddress: string): string[] => {
 
   const EMAIL_REGEX = new RegExp(`^${localPart}@${domain}$`, 'i')
 
-  return EMAIL_REGEX.test(emailAddress) ? [] : ['Please enter a valid email address']
+  return EMAIL_REGEX.test(emailAddress) ? [] : ['Please enter a valid email address.']
 }
 
 export default useEmailAddressValidation
