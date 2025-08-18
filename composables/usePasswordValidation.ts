@@ -1,4 +1,5 @@
 const PASSWORD_ERRORS = {
+  EMPTY: 'Please enter a password.',
   MIN_LENGTH: 'Please enter at least 8 characters.',
   UPPERCASE: 'Please use at least one uppercase letter.',
   LOWERCASE: 'Please use at least one lowercase letter.',
@@ -29,7 +30,7 @@ const usePasswordValidation = (password: string): string[] => {
 
   // If password field is empty, skip other conditions
   if (isEmpty) {
-    return ['Please enter a password.']
+    return [PASSWORD_ERRORS.EMPTY]
   }
 
   if (!hasMinimumLength) {
