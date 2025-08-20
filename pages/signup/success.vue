@@ -17,12 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { definePageMeta } from '#imports'
 import NordButton from '@nordhealth/components/lib/Button'
 import NordIcon from '@nordhealth/components/lib/Icon'
 import NordStack from '@nordhealth/components/lib/Stack'
 
-definePageMeta({
+useHead({
   title: 'Welcome to the Veterinary Practice Management App!',
 })
 </script>
