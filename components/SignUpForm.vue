@@ -37,11 +37,11 @@
           </nord-input>
         </nord-stack>
         <nord-checkbox
-          :checked="formData.newsletter"
+          v-model="formData.newsletter"
           class="newsletter"
           label="I’d like to receive occasional product updates and announcements"
           name="newsletter"
-          @change="updateNewsletterSubscription"
+          type="checkbox"
         ></nord-checkbox>
       </nord-fieldset>
       <nord-button expand type="submit" variant="primary">Sign Up</nord-button>
@@ -73,13 +73,6 @@ const formData = ref<FormData>({
   password: '',
   newsletter: false,
 })
-
-const updateNewsletterSubscription = (event: Event): void => {
-  const target = event.target as HTMLInputElement
-  const value = target.checked
-
-  formData.value.newsletter = value as boolean
-}
 
 const submit = async (): Promise<void> => {
   handleValidation()
