@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from '#app'
+import { navigateTo } from 'nuxt/app'
 import NordButton from '@nordhealth/components/lib/Button'
 import NordCheckbox from '@nordhealth/components/lib/Checkbox'
 import NordFieldset from '@nordhealth/components/lib/Fieldset'
