@@ -2,6 +2,7 @@
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "strict": true,
     "target": "esnext",
     "types": [
       "@nordhealth/components/lib/vue.d.ts",
@@ -14,6 +15,5 @@
     "pages",
     "types",
     ".nuxt/**/*.d.ts",
-  ],
-   "strict": true,
+  ],  
 }
