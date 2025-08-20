@@ -38,7 +38,7 @@
         </nord-stack>
         <nord-checkbox
           v-model="formData.newsletter"
-          class="newsletter"
+          class="n-margin-bs-xl"
           label="I’d like to receive occasional product updates and announcements"
           name="newsletter"
           type="checkbox"
@@ -109,9 +109,3 @@ const togglePasswordVisibility = (): void => {
   showPassword.value = !showPassword.value
 }
 </script>
-
-<style scoped>
-.newsletter {
-  margin-top: 2rem;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="n-padding-b-xl success-page">
+  <div class="n-padding-b-xl min-h-screen">
     <SignUpSuccess />
   </div>
 </template>
@@ -13,7 +13,7 @@ useHead({
 </script>
 
 <style scoped>
-.success-page {
+.min-h-screen {
   min-height: 100vh;
 }
 </style>

@@ -9,8 +9,13 @@
       <h1 class="color-success n-margin-b-xl">Success!</h1>
       <p class="n-font-size-xl">Your account has been successfully created.</p>
     </nord-stack>
-    <nord-stack class="n-margin-bs-xxl" direction="vertical" align-items="center">
-      <p class="n-font-size-l n-padding-is-m">
+    <nord-stack
+      class="n-margin-bs-xxl"
+      direction="vertical"
+      align-items="center"
+      justify-content="center"
+    >
+      <p class="n-font-size-l n-padding-is-m n-margin-auto text-center">
         Log in now to start using the Veterinary Practice Management App.
       </p>
       <nord-button variant="primary">Login</nord-button>
@@ -27,5 +32,9 @@ import NordStack from '@nordhealth/components/lib/Stack'
 <style scoped>
 .color-success {
   color: var(--n-color-status-success);
+}
+
+.text-center {
+  text-align: center;
 }
 </style>
