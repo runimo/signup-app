@@ -1,20 +1,29 @@
 <template>
   <form method="post" @submit.prevent="submit">
     <nord-stack>
-      <nord-fieldset hide-label label="Sign Up">
+      <nord-fieldset hide-label label="Account information">
         <nord-stack>
           <nord-input
+            ref="emailInput"
             v-model="formData.email"
+            :aria-describedby="errors.email.length > 0 ? 'email-errors' : undefined"
+            :aria-invalid="errors.email.length > 0 ? true : undefined"
             expand
-            :error="errors.email[0]"
             name="email"
             label="Email Address"
             placeholder="user@example.com"
             required
             type="email"
-          ></nord-input>
+          >
+            <div v-if="errors.email.length > 0" id="email-error" slot="error">
+              <p>{{ errors.email[0] }}</p>
+            </div>
+          </nord-input>
           <nord-input
+            ref="passwordInput"
             v-model="formData.password"
+            :aria-describedby="errors.password.length > 0 ? 'password-errors' : undefined"
+            :aria-invalid="errors.password.length > 0 ? true : undefined"
             auto-complete="new-password"
             expand
             name="password"
@@ -23,7 +32,7 @@
             required
             :type="showPassword ? 'text' : 'password'"
           >
-            <div v-if="errors.password.length > 0" slot="error">
+            <div v-if="errors.password.length > 0" id="password-errors" slot="error">
               <p v-for="(error, index) in errors.password" :key="index">{{ error }}</p>
             </div>
             <nord-button slot="end" square type="button" @click="togglePasswordVisibility">
@@ -74,9 +83,20 @@ const formData = ref<FormData>({
   newsletter: false,
 })
 
+const emailInput = ref<HTMLInputElement | null>(null)
+const passwordInput = ref<HTMLInputElement | null>(null)
+
 const submit = async (): Promise<void> => {
   handleValidation()
-  const hasErrors = errors.value.email.length > 0 || errors.value.password.length > 0
+  const hasEmailError = errors.value.email.length > 0
+  const hasPasswordError = errors.value.password.length > 0
+  const hasErrors = hasEmailError || hasPasswordError
+
+  if (hasEmailError) {
+    emailInput.value?.focus()
+  } else if (hasPasswordError) {
+    passwordInput.value?.focus()
+  }
 
   if (!hasErrors) {
     await navigateTo('/signup/success')

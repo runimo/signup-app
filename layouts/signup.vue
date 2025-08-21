@@ -6,7 +6,9 @@
       align-items="center"
       justify-content="center"
     >
-      <div class="n-margin-be-xl n-font-size-xxl">Veterinary Practice Management App</div>
+      <div aria-hidden="true" class="n-margin-be-xl n-font-size-xxl">
+        Veterinary Practice Management App
+      </div>
       <h1>Sign up to get started</h1>
       <nord-card>
         <slot />

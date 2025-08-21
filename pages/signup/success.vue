@@ -1,14 +1,14 @@
 <template>
-  <div class="n-padding-b-xl min-h-screen">
+  <main class="n-padding-b-xl min-h-screen">
     <SignUpSuccess />
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
 import SignUpSuccess from '../../components/SignUpSuccess.vue'
 
 useHead({
-  title: 'Welcome to the Veterinary Practice Management App!',
+  title: 'Sign up successful - Welcome to the Veterinary Practice Management App!',
 })
 </script>
 

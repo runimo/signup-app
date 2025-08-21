@@ -3,7 +3,7 @@ const useEmailAddressValidation = (emailAddress: string): string[] => {
 
   // If email address field is empty, skip other conditions
   if (isEmpty) {
-    return ['Please enter an email address.']
+    return ['Please enter an email address, e.g. user@example.com.']
   }
 
   /**
@@ -20,7 +20,9 @@ const useEmailAddressValidation = (emailAddress: string): string[] => {
 
   const EMAIL_REGEX = new RegExp(`^${localPart}@${domain}$`, 'i')
 
-  return EMAIL_REGEX.test(emailAddress) ? [] : ['Please enter a valid email address.']
+  return EMAIL_REGEX.test(emailAddress)
+    ? []
+    : ['Please enter a valid email address, e.g. user@example.com.']
 }
 
 export default useEmailAddressValidation

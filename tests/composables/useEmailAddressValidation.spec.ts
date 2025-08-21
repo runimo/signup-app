@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import useEmailAddressValidation from '../../composables/useEmailAddressValidation'
 
 const EMAIL_ERRORS = {
-  EMPTY: 'Please enter an email address.',
-  INVALID: 'Please enter a valid email address.',
+  EMPTY: 'Please enter an email address, e.g. user@example.com.',
+  INVALID: 'Please enter a valid email address, e.g. user@example.com.',
 }
 const INVALID_EMAIL_ADDRESSES = {
   LETTERS_ONLY: 'letterOnlyString',
