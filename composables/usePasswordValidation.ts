@@ -1,12 +1,4 @@
-const PASSWORD_ERRORS = {
-  EMPTY: 'Please enter a password.',
-  MIN_LENGTH: 'Please enter at least 8 characters.',
-  UPPERCASE: 'Please use at least one uppercase letter.',
-  LOWERCASE: 'Please use at least one lowercase letter.',
-  NUMBER: 'Please use at least one number.',
-  SPECIAL_CHAR: 'Please use at least one special character.',
-  SPACES: 'Please do not use spaces.',
-}
+import { PASSWORD_ERRORS } from '../constants/error-messages'
 
 const usePasswordValidation = (password: string): string[] => {
   const isEmpty = password === ''

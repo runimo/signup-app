@@ -1,50 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { PASSWORD_ERRORS, PASSWORD_ERRORS_GROUPED } from '../../constants/error-messages'
 import usePasswordValidation from '../../composables/usePasswordValidation'
-
-const PASSWORD_ERRORS = {
-  EMPTY: 'Please enter a password.',
-  MIN_LENGTH: 'Please enter at least 8 characters.',
-  NO_UPPERCASE: 'Please use at least one uppercase letter.',
-  NO_LOWERCASE: 'Please use at least one lowercase letter.',
-  NO_NUMBER: 'Please use at least one number.',
-  NO_SPECIAL_CHAR: 'Please use at least one special character.',
-  SPACES: 'Please do not use spaces.',
-}
-
-const PASSWORD_ERRORS_GROUPED = {
-  ONLY_LOWERCASE: [
-    PASSWORD_ERRORS.MIN_LENGTH,
-    PASSWORD_ERRORS.NO_UPPERCASE,
-    PASSWORD_ERRORS.NO_NUMBER,
-    PASSWORD_ERRORS.NO_SPECIAL_CHAR,
-  ],
-  ONLY_UPPERCASE: [
-    PASSWORD_ERRORS.MIN_LENGTH,
-    PASSWORD_ERRORS.NO_LOWERCASE,
-    PASSWORD_ERRORS.NO_NUMBER,
-    PASSWORD_ERRORS.NO_SPECIAL_CHAR,
-  ],
-  ONLY_NUMBERS: [
-    PASSWORD_ERRORS.MIN_LENGTH,
-    PASSWORD_ERRORS.NO_UPPERCASE,
-    PASSWORD_ERRORS.NO_LOWERCASE,
-    PASSWORD_ERRORS.NO_SPECIAL_CHAR,
-  ],
-  ONLY_SPECIAL_CHARS: [
-    PASSWORD_ERRORS.MIN_LENGTH,
-    PASSWORD_ERRORS.NO_UPPERCASE,
-    PASSWORD_ERRORS.NO_LOWERCASE,
-    PASSWORD_ERRORS.NO_NUMBER,
-  ],
-  ONLY_SPACES: [
-    PASSWORD_ERRORS.MIN_LENGTH,
-    PASSWORD_ERRORS.NO_UPPERCASE,
-    PASSWORD_ERRORS.NO_LOWERCASE,
-    PASSWORD_ERRORS.NO_NUMBER,
-    PASSWORD_ERRORS.NO_SPECIAL_CHAR,
-    PASSWORD_ERRORS.SPACES,
-  ],
-}
 
 const INVALID_PASSWORDS = {
   EMPTY: '',
@@ -59,7 +15,7 @@ const INVALID_PASSWORDS = {
   ONLY_NUMBERS: '123456',
   ONLY_SPECIAL_CHARS: '!@#$%^',
   ONLY_SPACES: '    ',
-}
+} as const
 
 const VALID_PASSWORD = 'Valid1Password!'
 
@@ -85,25 +41,25 @@ describe('usePasswordValidation', () => {
   it('returns "no uppercase" error if password contains no uppercase character', () => {
     const result = usePasswordValidation(INVALID_PASSWORDS.NO_UPPERCASE)
 
-    expect(result[0]).toEqual(PASSWORD_ERRORS.NO_UPPERCASE)
+    expect(result[0]).toEqual(PASSWORD_ERRORS.UPPERCASE)
   })
 
   it('returns "no lowercase" error if password contains no lowercase character', () => {
     const result = usePasswordValidation(INVALID_PASSWORDS.NO_LOWERCASE)
 
-    expect(result[0]).toEqual(PASSWORD_ERRORS.NO_LOWERCASE)
+    expect(result[0]).toEqual(PASSWORD_ERRORS.LOWERCASE)
   })
 
   it('returns "no number" error if password contains no number', () => {
     const result = usePasswordValidation(INVALID_PASSWORDS.NO_NUMBER)
 
-    expect(result[0]).toEqual(PASSWORD_ERRORS.NO_NUMBER)
+    expect(result[0]).toEqual(PASSWORD_ERRORS.NUMBER)
   })
 
   it('returns "no special char" error if password contains no special character', () => {
     const result = usePasswordValidation(INVALID_PASSWORDS.NO_SPECIAL_CHAR)
 
-    expect(result[0]).toEqual(PASSWORD_ERRORS.NO_SPECIAL_CHAR)
+    expect(result[0]).toEqual(PASSWORD_ERRORS.SPECIAL_CHAR)
   })
 
   it('returns "has spaces" error if password contains spaces', () => {
