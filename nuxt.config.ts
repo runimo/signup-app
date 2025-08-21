@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -10,7 +12,6 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { 'http-equiv': 'Content-Language', content: 'en' },
       ],
-      title: 'Veterinary Practice Management App',
     },
   },
   compatibilityDate: '2025-07-15',
@@ -28,7 +29,7 @@ export default defineNuxtConfig({
       template: {
         compilerOptions: {
           // treat all tags with a dash as custom elements
-          isCustomElement: (tag) => tag.includes('-'),
+          isCustomElement: (tag: string) => tag.includes('-'),
         },
       },
     },
